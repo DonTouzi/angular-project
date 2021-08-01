@@ -1,3 +1,4 @@
+import { CoursesService } from './../courses.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courses.component.css'],
 })
 export class CoursesComponent implements OnInit {
-  constructor() {}
+  title;
+  courses;
+  getTitle() {
+    return this.title;
+  }
+  constructor(service: CoursesService) {
+    this.courses = service.getCourses();
+    this.title = this.courses.length + ' Courses';
+  }
 
   ngOnInit(): void {}
 }
